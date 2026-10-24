@@ -19,9 +19,9 @@ jobs:
           
       - name: Install Arduino CLI
         run: |
-          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-          echo "/home/runner/work/ESP32Marauder/ESP32Marauder/bin" >> $GITHUB_PATH
-          export PATH=$PATH:/home/runner/work/ESP32Marauder/ESP32Marauder/bin
+          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh -s -- -b ${{ github.workspace }}/bin
+          echo "${{ github.workspace }}/bin" >> $GITHUB_PATH
+          export PATH=$PATH:${{ github.workspace }}/bin
           arduino-cli version
 
       - name: Verify Installed Cores
